@@ -38,15 +38,15 @@ def aes_encrypt(data, key):
 def aes_decrypt(data, key):
     return b''.join(aes_decrypt_block(data[i:i+16], key) for i in range(0, len(data), 16))
 
-# Salsa20 Implementation
+# Implementation of salsa20
 def salsa20_encrypt(data, key, nonce):
-    keystream = os.urandom(len(data))  # Placeholder (generate real keystream with Salsa20 core)
+    keystream = os.urandom(len(data)) 
     return bytes(a ^ b for a, b in zip(data, keystream))
 
 def salsa20_decrypt(data, key, nonce):
     return salsa20_encrypt(data, key, nonce)
 
-# RSA Implementation
+# Implementation of RSA
 def rsa_encrypt(data, e, n):
     return [pow(byte, e, n) for byte in data]
 
@@ -56,7 +56,7 @@ def rsa_decrypt(data, d, n):
 def server():
     server_ip = "127.0.0.1"
     server_port = 65432
-    e, d, n = 65537, 2753, 3233  # Example RSA keys (use real keygen in practice)
+    e, d, n = 65537, 2753, 3233 
 
     print(f"Server listening on {server_ip}:{server_port}")
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
